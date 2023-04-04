@@ -114,7 +114,20 @@ namespace HotPotato.Core.Http
 			_ = @this ?? throw Exceptions.ArgumentNull(nameof(@this));
 			_ = remoteEndpoint ?? throw Exceptions.ArgumentNull(nameof(remoteEndpoint));
 
-			HotPotatoRequest request = new HotPotatoRequest(new HttpMethod(@this.Method), @this.BuildUri(remoteEndpoint));
+			//If RemoteEndpoint contains host environment application path segment(s) use RequestPath for more reliable
+			//matching by avoiding segment-by-segment matching later simply because part of the app path was present
+			//Preserving existing pattern for all other cases where app path segments are not found in the RemoteEndpoint
+			string[] remoteEndpointSegments = remoteEndpoint
+				.Replace("https://", string.Empty)
+				.Replace("http://", string.Empty)
+				.TrimEnd('/')
+				.Split('/');
+			// the string comparison was on both Replaces originally, but threw an error with this version of .NET
+			//.Replace("https://", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+
+			string relativePath = remoteEndpointSegments.Length > 1 ? @this.Path : null;
+
+			HotPotatoRequest request = new HotPotatoRequest(new HttpMethod(@this.Method), @this.BuildUri(remoteEndpoint), relativePath);
 			if (@this.Headers != null && @this.Headers.Count > 0)
 			{
 				foreach (var item in @this.Headers)

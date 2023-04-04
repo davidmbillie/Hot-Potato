@@ -25,25 +25,29 @@ namespace HotPotato.Core.Http.Default
 		public MediaTypeHeaderValue ContentType { get; private set; }
 		public HttpContent Content => this.requestContent.Content;
         
-		public HotPotatoRequest(Uri uri)
-			: this(HttpMethod.Get, uri)
+		public HotPotatoRequest(Uri uri, string relativePath = null)
+			: this(HttpMethod.Get, uri, relativePath)
 		{
 			this.Uri = uri;
-			if (uri.IsAbsoluteUri)
+			if (!string.IsNullOrEmpty(relativePath))
 			{
-				this.DecodedPath = HttpUtility.UrlDecode(uri.AbsolutePath);
+				this.DecodedPath = HttpUtility.UrlDecode(relativePath);
 			}
-			else
+			else if (uri.IsAbsoluteUri)
 			{
 				this.DecodedPath = HttpUtility.UrlDecode(uri.OriginalString);
 			}
 		}
 
-		public HotPotatoRequest(HttpMethod method, Uri uri)
+		public HotPotatoRequest(HttpMethod method, Uri uri, string relativePath = null)
 		{
 			this.Method = method;
 			this.Uri = uri;
-			if (uri.IsAbsoluteUri)
+			if (!string.IsNullOrEmpty(relativePath))
+			{
+				this.DecodedPath = HttpUtility.UrlDecode(relativePath);
+			}
+			else if (uri.IsAbsoluteUri)
 			{
 				this.DecodedPath = HttpUtility.UrlDecode(uri.AbsolutePath);
 			}
