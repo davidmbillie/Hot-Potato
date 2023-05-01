@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 LABEL cache=true
 ARG IMAGE_VERSION
 ARG CERT_INSTALL
@@ -11,9 +11,9 @@ WORKDIR /app
 COPY . .
 
 RUN dotnet build -c Docker -p:Version=${IMAGE_VERSION}
-RUN dotnet publish -c Docker --framework=net5.0 --output /app/publish
+RUN dotnet publish -c Docker --framework=net6.0 --output /app/publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 
 LABEL maintainer "Test Automation Team"
 
