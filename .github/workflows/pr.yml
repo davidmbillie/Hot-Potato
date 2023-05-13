@@ -17,7 +17,7 @@ jobs:
         fetch-depth: 0
     - name: Build
       run: |
-        dotnet build --configuration Release
+        dotnet build --configuration NETFRAMEWORK
     - name: Run .NET Framework Tests
       run: |
         dotnet test ./test/HotPotato.NetFramework.Test/HotPotato.NetFramework.Test.csproj -c Release

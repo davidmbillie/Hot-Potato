@@ -10,10 +10,15 @@
     <Company />
     <Description>HotPotato.Core contains all of the models, HTTP logic, the proxy forwarder, and the interface for the proxy processor. This library is a dependency of HotPotato.AspNetCore.Middleware but will likely never need to be directly consumed.</Description>
     <RepositoryUrl>https://github.com/davidmbillie/Hot-Potato</RepositoryUrl>
-    <Configurations>Debug;Release</Configurations>
+    <Configurations>Debug;Release;NETFRAMEWORK</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NETFRAMEWORK|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
