@@ -20,4 +20,4 @@ jobs:
         dotnet build --configuration NETFRAMEWORK
     - name: Run .NET Framework Tests
       run: |
-        dotnet test ./test/HotPotato.NetFramework.Test/HotPotato.NetFramework.Test.csproj -c Release
+        dotnet test ./test/HotPotato.NetFramework.Test/HotPotato.NetFramework.Test.csproj -c NETFRAMEWORK --no-restore --no-build
