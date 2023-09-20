@@ -2,9 +2,12 @@
 name: Release Hot Potato
 
 on:
-  release:
-    types:
-      - "released"
+  push:
+    branches:
+      - '*'
+  # release:
+  #   types:
+  #     - "released"
 
 jobs:
   push-package:
