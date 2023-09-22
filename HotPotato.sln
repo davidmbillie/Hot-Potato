@@ -49,6 +49,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotPotato.Benchmark.Test", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotPotato.NetFramework.Test", "test\HotPotato.NetFramework.Test\HotPotato.NetFramework.Test.csproj", "{7C9EFC5A-86CF-40C6-A33E-F7EA578A1992}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotPotato.AspNetCore.Mvc.Testing", "src\HotPotato.AspNetCore.Mvc.Testing\HotPotato.AspNetCore.Mvc.Testing.csproj", "{08AFDDDC-6E90-4A7F-85A2-647FCE01182E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotPotato.AspNetCore.Mvc.Testing.Test", "test\HotPotato.AspNetCore.Mvc.Testing.Test\HotPotato.AspNetCore.Mvc.Testing.Test.csproj", "{559AAFE6-3E34-43E6-899A-E90EB3A47A07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +118,14 @@ Global
 		{7C9EFC5A-86CF-40C6-A33E-F7EA578A1992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C9EFC5A-86CF-40C6-A33E-F7EA578A1992}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C9EFC5A-86CF-40C6-A33E-F7EA578A1992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08AFDDDC-6E90-4A7F-85A2-647FCE01182E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08AFDDDC-6E90-4A7F-85A2-647FCE01182E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08AFDDDC-6E90-4A7F-85A2-647FCE01182E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08AFDDDC-6E90-4A7F-85A2-647FCE01182E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559AAFE6-3E34-43E6-899A-E90EB3A47A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559AAFE6-3E34-43E6-899A-E90EB3A47A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559AAFE6-3E34-43E6-899A-E90EB3A47A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559AAFE6-3E34-43E6-899A-E90EB3A47A07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +140,7 @@ Global
 		{06E2B4CF-A84A-4E9A-91F8-F2794F5B7B8A} = {18D73CFF-6ECA-4A0C-8A6A-97F84BC3E1C8}
 		{3AEFBAB9-D575-4876-8FA7-F89D4A14B4BE} = {18D73CFF-6ECA-4A0C-8A6A-97F84BC3E1C8}
 		{7C9EFC5A-86CF-40C6-A33E-F7EA578A1992} = {18D73CFF-6ECA-4A0C-8A6A-97F84BC3E1C8}
+		{559AAFE6-3E34-43E6-899A-E90EB3A47A07} = {18D73CFF-6ECA-4A0C-8A6A-97F84BC3E1C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2836D304-9C78-41F8-9A22-517D86241D2C}
