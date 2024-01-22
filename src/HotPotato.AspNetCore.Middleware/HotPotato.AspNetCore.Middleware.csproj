@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -15,10 +15,15 @@
     <Company />
     <Description>This is an ASP.NETCore middleware that can be used in situations where test suites are directly starting up the server startup or using the TestServer.</Description>
     <RepositoryUrl>https://github.com/davidmbillie/Hot-Potato</RepositoryUrl>
-    <Configurations>Debug;Release</Configurations>
+    <Configurations>Debug;Release;NETFRAMEWORK</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NETFRAMEWORK|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>

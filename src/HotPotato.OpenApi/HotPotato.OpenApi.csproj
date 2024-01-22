@@ -14,7 +14,7 @@
     <Company />
     <Description>HotPotato.OpenApi contains all of the OpenAPI functionality including the processor implementation that validates an HTTP request/response pair against a spec, a result collection, logic to find paths, and so on. Currently, we are using the packages NSwag, NJsonSchema, and NJsonSchema.Yaml to consume a spec and to validate the contained schemas.</Description>
     <RepositoryUrl>https://github.com/davidmbillie/Hot-Potato</RepositoryUrl>
-    <Configurations>Debug;Release</Configurations>
+    <Configurations>Debug;Release;NETFRAMEWORK</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
