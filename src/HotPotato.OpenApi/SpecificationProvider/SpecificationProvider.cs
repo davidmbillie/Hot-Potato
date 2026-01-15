@@ -29,7 +29,7 @@ namespace HotPotato.OpenApi.SpecificationProvider
 			this.SpecToken = config["SpecToken"];
 			this.Logger = logger;
 			//mirror the security setting used at startup
-			this.ignoreClientCertificateValidationErrors = config.GetSection("HttpClientSettings").GetValue<bool>("IgnoreClientHttpsCertificateValidationErrors");
+			this.ignoreClientCertificateValidationErrors = Convert.ToBoolean(config.GetSection("HttpClientSettings")["IgnoreClientHttpsCertificateValidationErrors"]);
 
 			Logger.LogInformation($"Spec located at {SpecLocation}");
 		}
