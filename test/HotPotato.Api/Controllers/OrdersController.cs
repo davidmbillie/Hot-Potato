@@ -140,7 +140,7 @@ namespace HotPotato.Test.Api.Controllers
 		[HttpOptions("/order/{id}")]
 		public IActionResult OptionsForPath()
 		{
-			Response.Headers.Add("Allow", "Allow");
+			Response.Headers.Append("Allow", "Allow");
 			return Ok("GET, PUT");
 		}
 
@@ -240,7 +240,7 @@ namespace HotPotato.Test.Api.Controllers
 			//InValidHeaders -- strings not formatted correctly
 			if (id == 666 && itemId == 666)
 			{
-				Response.Headers.Add("X-header", "&*(&^&%%##@");
+				Response.Headers.Append("X-header", "&*(&^&%%##@");
 				return NoContent();
 			}
 
@@ -274,7 +274,7 @@ namespace HotPotato.Test.Api.Controllers
 
 			var res = new NoContentResult();
 
-			Response.Headers.Add("X-header", "SEVBREVS");
+			Response.Headers.Append("X-header", "SEVBREVS");
 
 			return res;
 		}
