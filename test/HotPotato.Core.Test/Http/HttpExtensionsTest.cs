@@ -177,10 +177,10 @@ namespace HotPotato.Core.Http
 		}
 
 		[Fact]
-		public void ToClientResponseMessage_ThrowsArgumentNullExceptionWithResponseMessage()
+		public async Task ToClientResponseMessage_ThrowsArgumentNullExceptionWithResponseMessage()
 		{
 			HttpResponseMessage respMsg = null;
-			Assert.ThrowsAsync<ArgumentNullException>(async () => await respMsg.ToClientResponseAsync());
+			await Assert.ThrowsAsync<ArgumentNullException>(async () => await respMsg.ToClientResponseAsync());
 		}
 
 		[Fact]
@@ -254,9 +254,10 @@ namespace HotPotato.Core.Http
 			MSHTTP.HttpRequest request = new DefaultHttpRequest(new MSHTTP.DefaultHttpContext());
 			request.Method = POST;
 
-			IHotPotatoRequest result = await HttpExtensions.ToProxyRequest(request, AValidUri);
+			IHotPotatoRequest hotPotRequest = await HttpExtensions.ToProxyRequest(request, AValidUri);
+			byte[] result = await hotPotRequest.Content.ReadAsByteArrayAsync();
 
-			Assert.Empty(result.Content.ReadAsByteArrayAsync().Result);
+			Assert.Empty(result);
 		}
 
 		[Fact]
@@ -271,18 +272,18 @@ namespace HotPotato.Core.Http
 		}
 
 		[Fact]
-		public void ToProxyRequest_ThrowsArgumentNullExceptionWithMsHttpRequest()
+		public async Task ToProxyRequest_ThrowsArgumentNullExceptionWithMsHttpRequest()
 		{
 			MSHTTP.HttpRequest request = null;
-			Assert.ThrowsAsync<ArgumentNullException>(async () => await request.ToProxyRequest(null));
+			await Assert.ThrowsAsync<ArgumentNullException>(async () => await request.ToProxyRequest(null));
 		}
 
 		[Fact]
-		public void ToProxyRequest_ThrowsArgumentNullExceptionWithRemoteEndpoint()
+		public async Task ToProxyRequest_ThrowsArgumentNullExceptionWithRemoteEndpoint()
 		{
 			MSHTTP.HttpRequest request = Mock.Of<MSHTTP.HttpRequest>();
 			Action subject = async () => await request.ToProxyRequest(null);
-			Assert.ThrowsAsync<ArgumentNullException>(async () => await request.ToProxyRequest(null));
+			await Assert.ThrowsAsync<ArgumentNullException>(async () => await request.ToProxyRequest(null));
 		}
 
 		[Fact]
@@ -366,17 +367,17 @@ namespace HotPotato.Core.Http
 		}
 
 		[Fact]
-		public void ToProxyResponseAsync_ThrowsArgumentNullExceptionWithIHttpResponse()
+		public async Task ToProxyResponseAsync_ThrowsArgumentNullExceptionWithIHttpResponse()
 		{
 			IHotPotatoResponse response = null;
-			Assert.ThrowsAsync<ArgumentNullException>(async () => await response.ToProxyResponseAsync(null));
+			await Assert.ThrowsAsync<ArgumentNullException>(async () => await response.ToProxyResponseAsync(null));
 		}
 
 		[Fact]
-		public void ToProxyResponseAsync_ThrowsArgumentNullExceptionWithMsHttpResponse()
+		public async Task ToProxyResponseAsync_ThrowsArgumentNullExceptionWithMsHttpResponse()
 		{
 			IHotPotatoResponse response = Mock.Of<IHotPotatoResponse>();
-			Assert.ThrowsAsync<ArgumentNullException>(async () => await response.ToProxyResponseAsync(null));
+			await Assert.ThrowsAsync<ArgumentNullException>(async () => await response.ToProxyResponseAsync(null));
 		}
 	}
 }

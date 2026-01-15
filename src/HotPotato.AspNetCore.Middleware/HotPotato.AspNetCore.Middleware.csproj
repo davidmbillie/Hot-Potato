@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.DotNetHostPolicy" Version="8.0.23" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.2" />
   </ItemGroup>
 
   <ItemGroup>
