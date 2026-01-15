@@ -15,11 +15,5 @@ namespace HotPotato.Core
 			SpecLocation = specLocation;
 			Response = response;
 		}
-
-		protected SpecNotFoundException(SerializationInfo info, StreamingContext context)
-			: base (info, context)
-		{
-
-		}
 	}
 }
