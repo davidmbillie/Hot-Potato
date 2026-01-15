@@ -6,4 +6,3 @@ using System.Text;
 [assembly: InternalsVisibleTo("HotPotato.E2E.Test")]
 [assembly: InternalsVisibleTo("HotPotato.Integration.Test")]
 [assembly: InternalsVisibleTo("HotPotato.OpenApi.Test")]
-[assembly: InternalsVisibleTo("HotPotato.NetFramework.Test")]
