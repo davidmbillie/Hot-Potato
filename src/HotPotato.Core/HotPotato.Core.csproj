@@ -23,7 +23,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.9" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
     <PackageReference Include="Microsoft.NETCore.DotNetHostPolicy" Version="8.0.23" />
-    <PackageReference Include="System.Net.Primitives" Version="4.3.1" />
   </ItemGroup>
 
 </Project>
