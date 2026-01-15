@@ -10,9 +10,6 @@ We invite anyone interested in API conformance testing in the open-source commun
 * Focusing on what is best for the community
 * Showing empathy towards other community members
 
-## Visual Studio Version
-
-Make sure you have Visual Studio 2022 or higher installed. This is recommended for now, but will be mandatory as we migrate to .NET 6.0.
 
 ## Testing
 
