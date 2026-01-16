@@ -1,4 +1,5 @@
 using HotPotato.OpenApi.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -21,7 +22,7 @@ namespace HotPotato.AspNetCore.Host
 		{
 			_logger.LogDebug("Getting Results...");
 
-			HttpContext.Response.Headers.Add("X-Status", _resultCollector.OverallResult.ToString());
+			HttpContext.Response.Headers.Append("X-Status", _resultCollector.OverallResult.ToString());
 
 			return Ok(_resultCollector.Results);
 		}
