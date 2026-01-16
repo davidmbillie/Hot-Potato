@@ -2,6 +2,7 @@ using HotPotato.OpenApi.Validators;
 using NJsonSchema;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace HotPotato.OpenApi.Filters
@@ -16,9 +17,9 @@ namespace HotPotato.OpenApi.Filters
 		private const string AValidJsonArray = @"[{'testsPassed': 12,'testsTotal': 12,'id': 4483,'url': 'TestMetricsURL'},{'branchesCovered': 4,'branchesTotal': 4,'linesCovered': 8,'linesTotal': 8,'id': 4483,'url': null},{'id': 4483,'url': 'PerformanceMetricsURL'}]";
 
 		[Fact]
-		public void NullableValidationErrorFilter_Filter_RemovesFalseNullErrors()
+		public async Task NullableValidationErrorFilter_Filter_RemovesFalseNullErrors()
 		{
-			JsonSchema schema = JsonSchema.FromJsonAsync(AValidNullableSchema).Result;
+			JsonSchema schema = await JsonSchema.FromJsonAsync(AValidNullableSchema);
 
 			ICollection<NJsonSchema.Validation.ValidationError> errors = schema.Validate(AValidNullableBody);
 			List<ValidationError> errList = errors.ToValidationErrorList();
@@ -31,9 +32,9 @@ namespace HotPotato.OpenApi.Filters
 		}
 
 		[Fact]
-		public void NullableValidationErrorFilter_Filter_DoesNotRemoveTrueErrors()
+		public async Task NullableValidationErrorFilter_Filter_DoesNotRemoveTrueErrors()
 		{
-			JsonSchema schema = JsonSchema.FromJsonAsync(AValidSchema).Result;
+			JsonSchema schema = await JsonSchema.FromJsonAsync(AValidSchema);
 
 			ICollection<NJsonSchema.Validation.ValidationError> errors = schema.Validate(AValidNullableBody);
 			List<ValidationError> errList = errors.ToValidationErrorList();
@@ -48,7 +49,7 @@ namespace HotPotato.OpenApi.Filters
 		}
 
 		[Fact]
-		public void NullableValidationErrorFilter_Filter_DoesNotThrowExceptionWithJArray()
+		public async Task NullableValidationErrorFilter_Filter_DoesNotThrowExceptionWithJArray()
 		{
 			JsonSchema schema = JsonSchema.CreateAnySchema();
 

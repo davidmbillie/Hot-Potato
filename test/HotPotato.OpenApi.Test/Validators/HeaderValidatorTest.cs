@@ -2,6 +2,7 @@
 using HotPotato.OpenApi.Models;
 using NJsonSchema;
 using NSwag;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace HotPotato.OpenApi.Validators
@@ -75,12 +76,12 @@ namespace HotPotato.OpenApi.Validators
 		}
 
 		[Fact]
-		public void HeaderValidator_ReturnsFalseWithInvalidSchema()
+		public async Task HeaderValidator_ReturnsFalseWithInvalidSchema()
 		{
 			OpenApiResponse swagResp = new OpenApiResponse();
 			OpenApiHeader header = new OpenApiHeader()
 			{
-				Schema = JsonSchema.FromJsonAsync(AValidSchema).Result
+				Schema = await JsonSchema.FromJsonAsync(AValidSchema)
 			};
 
 			swagResp.Headers.Add(AValidHeaderKey, header);

@@ -1,5 +1,6 @@
 using HotPotato.OpenApi.Models;
 using NJsonSchema;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace HotPotato.OpenApi.Validators
@@ -17,9 +18,9 @@ namespace HotPotato.OpenApi.Validators
 		private const string AValidNullableSchema = @"{'properties':{'foo':{'type':'integer','x-nullable':true}}}";
 
 		[Fact]
-		public void JsonBodyValidator_ReturnsTrueWithValid()
+		public async Task JsonBodyValidator_ReturnsTrueWithValid()
 		{
-			JsonSchema schema = JsonSchema.FromJsonAsync(AValidSchema).Result;
+			JsonSchema schema = await JsonSchema.FromJsonAsync(AValidSchema);
 			JsonBodyValidator subject = new JsonBodyValidator(AValidBody);
 
 			IValidationResult result = subject.Validate(schema);
@@ -28,9 +29,9 @@ namespace HotPotato.OpenApi.Validators
 		}
 
 		[Fact]
-		public void JsonBodyValidator_ReturnsFalseWithInvalid()
+		public async Task JsonBodyValidator_ReturnsFalseWithInvalid()
 		{
-			JsonSchema schema = JsonSchema.FromJsonAsync(AValidSchema).Result;
+			JsonSchema schema = await JsonSchema.FromJsonAsync(AValidSchema);
 			JsonBodyValidator subject = new JsonBodyValidator(AnInvalidBody);
 
 			InvalidResult result = (InvalidResult)subject.Validate(schema);
@@ -41,9 +42,9 @@ namespace HotPotato.OpenApi.Validators
 		}
 
 		[Fact]
-		public void JsonBodyValidator_ReturnsFalseWithUndocumentedProperty()
+		public async Task JsonBodyValidator_ReturnsFalseWithUndocumentedProperty()
 		{
-			JsonSchema schema = JsonSchema.FromJsonAsync(AValidSchema).Result;
+			JsonSchema schema = await JsonSchema.FromJsonAsync(AValidSchema);
 			JsonBodyValidator subject = new JsonBodyValidator(ABodyWithAnUnexpectedProperty);
 
 			InvalidResult result = (InvalidResult)subject.Validate(schema);
@@ -69,9 +70,9 @@ namespace HotPotato.OpenApi.Validators
 		//the cases for null body and null schema will now be addressed by the ContentValidator
 
 		[Fact]
-		public void JsonBodyValidator_ReturnsTrueWithValidNullable()
+		public async Task JsonBodyValidator_ReturnsTrueWithValidNullable()
 		{
-			JsonSchema schema = JsonSchema.FromJsonAsync(AValidNullableSchema).Result;
+			JsonSchema schema = await JsonSchema.FromJsonAsync(AValidNullableSchema);
 			JsonBodyValidator subject = new JsonBodyValidator(AValidNullableBody);
 
 			IValidationResult result = subject.Validate(schema);
@@ -80,9 +81,9 @@ namespace HotPotato.OpenApi.Validators
 		}
 
 		[Fact]
-		public void JsonBodyValidator_ReturnsFalseWithUnexpectedNullable()
+		public async Task JsonBodyValidator_ReturnsFalseWithUnexpectedNullable()
 		{
-			JsonSchema schema = JsonSchema.FromJsonAsync(AValidSchema).Result;
+			JsonSchema schema = await JsonSchema.FromJsonAsync(AValidSchema);
 			JsonBodyValidator subject = new JsonBodyValidator(AValidNullableBody);
 
 			InvalidResult result = (InvalidResult)subject.Validate(schema);

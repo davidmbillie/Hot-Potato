@@ -4,6 +4,7 @@ using Moq;
 using NJsonSchema;
 using System.Collections.Generic;
 using Xunit;
+using System.Threading.Tasks;
 
 namespace HotPotato.OpenApi.Validators
 {
@@ -14,9 +15,9 @@ namespace HotPotato.OpenApi.Validators
 		private const string ABodyWithAnUnexpectedProperty = "{'bar': 2}";
 
 		[Fact]
-		public void ValidateUndefinedProperties_ReturnsEmptyList_WithValidSchema()
+		public async Task ValidateUndefinedProperties_ReturnsEmptyList_WithValidSchema()
 		{
-			JsonSchema subject = JsonSchema.FromJsonAsync(AValidSchema).Result;
+			JsonSchema subject = await JsonSchema.FromJsonAsync(AValidSchema);
 
 			List<ValidationError> results = subject.ValidateUndefinedProperties(AValidBody);
 
@@ -36,9 +37,9 @@ namespace HotPotato.OpenApi.Validators
 		}
 
 		[Fact]
-		public void JsonBodyValidator_ReturnsAListWithCorrectValidationErrorKind_WithInvalidSchema()
+		public async Task JsonBodyValidator_ReturnsAListWithCorrectValidationErrorKind_WithInvalidSchema()
 		{
-			JsonSchema subject = JsonSchema.FromJsonAsync(AValidSchema).Result;
+			JsonSchema subject = await JsonSchema.FromJsonAsync(AValidSchema);
 
 			List<ValidationError> results = subject.ValidateUndefinedProperties(ABodyWithAnUnexpectedProperty);
 
