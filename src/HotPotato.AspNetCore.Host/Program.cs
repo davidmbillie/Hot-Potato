@@ -13,7 +13,7 @@ namespace HotPotato.AspNetCore.Host
 			{
 				Banner.Show();
 			}
-			var host = new WebHostBuilder()
+			var host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
 				.ConfigureAppConfiguration((hostingContext, config) =>
 				{
 					config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
@@ -26,17 +26,22 @@ namespace HotPotato.AspNetCore.Host
 				{
 					logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
 					logging.AddConsole();
+
 					if (hostingContext.HostingEnvironment.IsDevelopment())
 					{
 						logging.AddDebug();
 					}
 				})
-				.UseKestrel((options) =>
+				.ConfigureWebHostDefaults(webBuilder =>
 				{
-					options.AddServerHeader = false;
+					webBuilder.UseKestrel(options =>
+					{
+						options.AddServerHeader = false;
+					});
+
+					webBuilder.UseUrls("http://0.0.0.0:3232");
+					webBuilder.UseStartup<Startup>();
 				})
-				.UseUrls("http://0.0.0.0:3232")
-				.UseStartup<Startup>()
 				.Build();
 
 			host.Run();
