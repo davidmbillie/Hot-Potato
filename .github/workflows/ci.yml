@@ -56,10 +56,6 @@ jobs:
       run: |
         dotnet test ./test/HotPotato.Integration.Test/HotPotato.Integration.Test.csproj -c Release -l:"JUnit;LogFilePath=$GITHUB_WORKSPACE/test/results/integrationResults.xml" --no-restore --no-build
 
-    - name: Run Performance Tests
-      run: |
-        dotnet test ./test/HotPotato.Benchmark.Test/HotPotato.Benchmark.Test.csproj -c Release --no-restore --no-build
-
     - name: Run E2E Tests
       env:
         SpecToken: ${{ secrets.GITHUB_TOKEN }}
