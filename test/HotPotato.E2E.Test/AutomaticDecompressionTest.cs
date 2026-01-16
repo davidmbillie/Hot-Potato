@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using HotPotato.Core.Http;
 using HotPotato.Core.Http.Default;
 using System.IO;
@@ -17,7 +18,7 @@ namespace HotPotato.E2E.Test
 	[Collection("Host")]
 	public class AutomaticDecompressionTest
 	{
-		private IWebHost host;
+		private IHost host;
 		private bool specTokenExists;
         
 		private const string ApiLocation = "http://localhost:5000";
@@ -53,7 +54,7 @@ namespace HotPotato.E2E.Test
 
 			var servicePro = host.Services;
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(
@@ -89,7 +90,7 @@ namespace HotPotato.E2E.Test
 
 			var servicePro = host.Services;
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(

@@ -2,6 +2,7 @@ using HotPotato.Core.Http;
 using HotPotato.Core.Http.Default;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace HotPotato.E2E.Test
 	[Collection("Host")]
 	public class SanityTest
 	{
-		private IWebHost host;
+		private IHost host;
 		private bool specTokenExists;
 
 		private const string ApiLocation = "http://localhost:5000";
@@ -46,7 +47,7 @@ namespace HotPotato.E2E.Test
 			//Setting up mock server to hit
 			const string expected = "ValidResponse";
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(
@@ -94,7 +95,7 @@ namespace HotPotato.E2E.Test
 					'Admin'
 				]}";
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(
@@ -133,7 +134,7 @@ namespace HotPotato.E2E.Test
 
 			var servicePro = host.Services;
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(
@@ -170,7 +171,7 @@ namespace HotPotato.E2E.Test
 
 			var servicePro = host.Services;
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(

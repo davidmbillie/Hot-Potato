@@ -4,6 +4,7 @@ using HotPotato.OpenApi.Models;
 using HotPotato.OpenApi.Results;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Net.Http;
@@ -23,7 +24,7 @@ namespace HotPotato.E2E.Test
 	[Collection("Host")]
 	public class ResultsTest
 	{
-		private IWebHost host;
+		private IHost host;
 		private bool specTokenExists;
 
 		private const string ApiLocation = "http://localhost:5000";
@@ -56,7 +57,7 @@ namespace HotPotato.E2E.Test
 			//Setting up mock server to hit
 			const string expected = "ValidResponse";
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(
@@ -108,7 +109,7 @@ namespace HotPotato.E2E.Test
 			//Setting up mock server to hit
 			const string expected = "ValidResponse";
 
-			using (var server = FluentMockServer.Start(ApiLocation))
+			using (var server = WireMockServer.Start(ApiLocation))
 			{
 				server
 					.Given(

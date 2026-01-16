@@ -14,36 +14,40 @@ namespace HotPotato.E2E.Test
 	/// </summary>
 	public class HostFixture : IDisposable
 	{
-		public IWebHost Host { get; }
+		public IHost Host { get; }
 		public bool SpecTokenExists { get; }
 
 		public HostFixture()
 		{
-			Host = new WebHostBuilder()
+			Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
 				.ConfigureAppConfiguration((hostingContext, config) =>
 				{
-					config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
-					//this uses the appsetting.json from the HotPotato.AspNetCore.Host project
-					config.AddJsonFile("appsettings.json", optional: true);
-					config.AddEnvironmentVariables();
-					config.AddUserSecrets<HostFixture>();
+					config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+						.AddJsonFile("appsettings.json", optional: true)
+						.AddEnvironmentVariables()
+						.AddUserSecrets<Startup>();
 				})
 				.ConfigureLogging((hostingContext, logging) =>
 				{
 					logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
 					logging.AddConsole();
+
 					if (hostingContext.HostingEnvironment.IsDevelopment())
 					{
 						logging.AddDebug();
 					}
 				})
-				.UseKestrel((options) =>
+				.ConfigureWebHostDefaults(webBuilder =>
 				{
-					options.AddServerHeader = false;
+					webBuilder.UseKestrel(options =>
+					{
+						options.AddServerHeader = false;
+					});
+
+					webBuilder.UseUrls("http://0.0.0.0:3232");
+					webBuilder.UseStartup<Startup>();
 				})
-				.UseUrls("http://0.0.0.0:3232")
-				.UseStartup<Startup>()
-			.Build();
+				.Build();
 
 			IConfiguration configuration = Host.Services.GetService<IConfiguration>();
 			if (!string.IsNullOrWhiteSpace(configuration["SpecToken"]))
