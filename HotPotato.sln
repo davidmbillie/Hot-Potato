@@ -41,8 +41,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(meta)", "(meta)", "{F2D187
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotPotato.TestServ.Test", "test\HotPotato.TestServer.Test\HotPotato.TestServ.Test.csproj", "{06E2B4CF-A84A-4E9A-91F8-F2794F5B7B8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotPotato.Extensions", "src\HotPotato.Extensions\HotPotato.Extensions.csproj", "{FFEDDFCF-DE15-48DD-A7D5-E7375B9B2DAA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotPotato.NUnitHelpers", "src\HotPotato.NUnitHelpers\HotPotato.NUnitHelpers.csproj", "{DB886999-5A93-4BE8-9AEE-A1FDAB136F6C}"
 EndProject
 Global
@@ -111,12 +109,6 @@ Global
 		{06E2B4CF-A84A-4E9A-91F8-F2794F5B7B8A}.Docker|Any CPU.ActiveCfg = Docker|Any CPU
 		{06E2B4CF-A84A-4E9A-91F8-F2794F5B7B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06E2B4CF-A84A-4E9A-91F8-F2794F5B7B8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFEDDFCF-DE15-48DD-A7D5-E7375B9B2DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFEDDFCF-DE15-48DD-A7D5-E7375B9B2DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFEDDFCF-DE15-48DD-A7D5-E7375B9B2DAA}.Docker|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFEDDFCF-DE15-48DD-A7D5-E7375B9B2DAA}.Docker|Any CPU.Build.0 = Debug|Any CPU
-		{FFEDDFCF-DE15-48DD-A7D5-E7375B9B2DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFEDDFCF-DE15-48DD-A7D5-E7375B9B2DAA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB886999-5A93-4BE8-9AEE-A1FDAB136F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB886999-5A93-4BE8-9AEE-A1FDAB136F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB886999-5A93-4BE8-9AEE-A1FDAB136F6C}.Docker|Any CPU.ActiveCfg = Debug|Any CPU
