@@ -57,8 +57,6 @@ namespace HotPotato.OpenApi.SpecificationProvider
 			{
 				if (ignoreClientCertificateValidationErrors)
 				{
-					//both of these need to be set to avoid the SSL connection error
-					System.Net.ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, errors) => true);
 					handler.ServerCertificateCustomValidationCallback = (message, certificate, chain, errors) =>
 					{
 						//output which certificates are being accepted

@@ -8,9 +8,11 @@ using HotPotato.OpenApi.SpecificationProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Xunit;
+using System.Collections.Generic;
 
 namespace HotPotato.AspNetCore.Middleware
 {
@@ -24,20 +26,19 @@ namespace HotPotato.AspNetCore.Middleware
 		{
 			HotPotatoClient client = new HotPotatoClient(new System.Net.Http.HttpClient());
 
-			IWebHost subject = new WebHostBuilder()
+			var subject = Host.CreateDefaultBuilder()
 				.ConfigureAppConfiguration((hostingContext, config) =>
 				{
 					config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
+					config.AddInMemoryCollection(new Dictionary<string, string>
+					{
+						["SpecLocation"] = SpecLocation,
+						["RemoteEndpoint"]= ApiServerAddress
+					});
 				})
 				.ConfigureServices(services =>
 				{
 					services.ConfigureMiddlewareServices(client);
-				})
-				.UseSetting("SpecLocation", SpecLocation)
-				.UseSetting("RemoteEndpoint", ApiServerAddress)
-				.Configure(app =>
-				{
-					app.UseMiddleware<HotPotatoMiddleware>();
 				})
 				.Build();
 
@@ -57,19 +58,18 @@ namespace HotPotato.AspNetCore.Middleware
 		[Fact]
 		public void ConfigureMiddlewareServices_Creates_HttpClient_Via_DI()
 		{
-			IWebHost subject = new WebHostBuilder()
+			var subject = Host.CreateDefaultBuilder()
 				.ConfigureAppConfiguration((hostingContext, config) =>
 				{
 					config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
+					config.AddInMemoryCollection(new Dictionary<string, string>
+					{
+						["SpecLocation"] = SpecLocation
+					});
 				})
 				.ConfigureServices(services =>
 				{
 					services.ConfigureMiddlewareServices();
-				})
-				.UseSetting("SpecLocation", SpecLocation)
-				.Configure(app =>
-				{
-					app.UseMiddleware<HotPotatoMiddleware>();
 				})
 				.Build();
 

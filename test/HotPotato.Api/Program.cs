@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace HotPotato.Test.Api
@@ -14,13 +15,17 @@ namespace HotPotato.Test.Api
 	{
 		public static void Main(string[] args)
 		{
-			CreateWebHostBuilder(args).Build().Run();
+			CreateHostBuilder(args).Build().Run();
 		}
 
-		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-			WebHost.CreateDefaultBuilder(args)
-				.UseKestrel()
-				.UseStartup<Startup>()
-				.UseUrls("http://localhost:5000");
+		public static IHostBuilder CreateHostBuilder(string[] args) =>
+			Host.CreateDefaultBuilder(args)
+			.ConfigureWebHostDefaults(webBuilder =>
+			{
+				webBuilder.UseKestrel();
+				webBuilder.UseStartup<Startup>();
+				webBuilder.UseUrls("http://localhost:5000");
+			}
+		);
 	}
 }
