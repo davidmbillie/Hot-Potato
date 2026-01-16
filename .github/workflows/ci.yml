@@ -20,13 +20,13 @@ jobs:
         # submodules: true
 
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v4
+      uses: gittools/actions/gitversion/setup@v0.97
       with:
-        versionSpec: '6.4.x'
+        versionSpec: '5.x'
 
     - name: Generate Version
       id: gitversion
-      uses: gittools/actions/gitversion/execute@v4
+      uses: gittools/actions/gitversion/execute@v0.97
       with:
         useConfigFile: true
         configFilePath: './GitVersion.yml'
