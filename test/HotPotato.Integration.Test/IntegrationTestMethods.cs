@@ -35,7 +35,7 @@ namespace HotPotato
 
 			config["SpecLocation"] = specLocation;
 
-			Startup startUp = new Startup(config, Mock.Of<ILogger<Startup>>());
+			Startup startUp = new Startup(config);
 
 			IServiceCollection services = new ServiceCollection();
 			startUp.ConfigureServices(services);
