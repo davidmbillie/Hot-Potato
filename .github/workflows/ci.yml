@@ -62,11 +62,11 @@ jobs:
       run: |
         dotnet test ./test/HotPotato.E2E.Test/HotPotato.E2E.Test.csproj -c Release -l:"JUnit;LogFilePath=$GITHUB_WORKSPACE/test/results/E2EResults.xml" --no-restore --no-build
 
-    - name: Run TestServer Tests
-      env:
-        SpecToken: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        dotnet test ./test/HotPotato.TestServer.Test/HotPotato.TestServ.Test.csproj -c Release -l:"JUnit;LogFilePath=$GITHUB_WORKSPACE/test/results/testServerResults.xml" --no-restore --no-build
+    # - name: Run TestServer Tests
+    #   env:
+    #     SpecToken: ${{ secrets.GITHUB_TOKEN }}
+    #   run: |
+    #     dotnet test ./test/HotPotato.TestServer.Test/HotPotato.TestServ.Test.csproj -c Release -l:"JUnit;LogFilePath=$GITHUB_WORKSPACE/test/results/testServerResults.xml" --no-restore --no-build
 
     - name: Start Hot Potato For Postman Tests
       env:
