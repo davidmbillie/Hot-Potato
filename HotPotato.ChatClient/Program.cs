@@ -10,8 +10,8 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.Configure<AzureOpenAIOptions>(
 	builder.Configuration.GetSection("AzureOpenAI"));
 
-// Register your custom client
-builder.Services.AddHttpClient<IChatClient, AzureOpenAIChatClient>();
+// Register your SDK‑powered client
+builder.Services.AddSingleton<IChatClient, AzureOpenAIChatClient>();
 
 var app = builder.Build();
 
@@ -38,7 +38,8 @@ while (true)
 
 	await foreach (var update in chat.GetStreamingResponseAsync(messages))
 	{
-		if (update.Text is string text)
+		var text = update.Text;
+		if (!string.IsNullOrEmpty(text))
 			Console.Write(text);
 	}
 
